@@ -8,9 +8,13 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, "./dist/public")));
 
 app.get("/", (_req: Request, res: Response) => {
-  const body = renderToString(<App />);
-  const html = template(body);
-  res.send(html);
+  fetch("https://api.github.com/users/gaearon/gists")
+    .then((response) => response.json())
+    .then((gists) => {
+      const body = renderToString(<App gists={gists} />);
+      const html = template(body);
+      res.send(html);
+    });
 });
 
 app.listen(3000, () => {
