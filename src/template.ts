@@ -1,4 +1,4 @@
-export default function (body: any) {
+export default function (body: string, gists: []) {
   return `
 <!DOCTYPE HTML>
 <html>
@@ -7,6 +7,7 @@ export default function (body: any) {
     </head>
     <body>
         <div id="root">${body}</div>
+        <script>window.gists = ${JSON.stringify(gists)}</script>
         <script src="/bundle.js"></script>
     </body>
 </html>
