@@ -1,3 +1,9 @@
-import { render } from "react-dom";
+import { hydrate } from "react-dom";
 import App from "./app";
-render(<App gists={[]}/>, document.getElementById("root"));
+declare global {
+    interface Window {
+        gists:any;
+    }
+}
+
+hydrate(<App gists={window.gists}/>, document.getElementById("root"));

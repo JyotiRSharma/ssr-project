@@ -12,7 +12,7 @@ app.get("/", (_req: Request, res: Response) => {
     .then((response) => response.json())
     .then((gists) => {
       const body = renderToString(<App gists={gists} />);
-      const html = template(body);
+      const html = template(body, gists);
       res.send(html);
     });
 });
